@@ -1,0 +1,25 @@
+{
+  "name": "AI Resume Builder - Professional Resume Creator",
+  "short_name": "AI Resume Builder",
+  "description": "AI-powered resume builder with professional templates and optimization",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "categories": ["productivity", "business", "education"],
+  "lang": "en-US",
+  "dir": "ltr"
+}

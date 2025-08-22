@@ -1,0 +1,838 @@
+@import 'tailwindcss';
+
+@import 'tw-animate-css';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    --font-sans: Instrument Sans, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --radius-lg: var(--radius);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-sm: calc(var(--radius) - 4px);
+
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+
+    --color-sidebar: var(--sidebar-background);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
+}
+
+@layer utilities {
+    body,
+    html {
+        --font-sans:
+            'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    }
+}
+
+:root {
+    --background: hsl(0 0% 100%);
+    --foreground: hsl(0 0% 3.9%);
+    --card: hsl(0 0% 100%);
+    --card-foreground: hsl(0 0% 3.9%);
+    --popover: hsl(0 0% 100%);
+    --popover-foreground: hsl(0 0% 3.9%);
+    --primary: hsl(221.2 83.2% 53.3%);
+    --primary-foreground: hsl(210 40% 98%);
+    --secondary: hsl(210 40% 96%);
+    --secondary-foreground: hsl(222.2 84% 4.9%);
+    --muted: hsl(210 40% 96%);
+    --muted-foreground: hsl(215.4 16.3% 46.9%);
+    --accent: hsl(210 40% 96%);
+    --accent-foreground: hsl(222.2 84% 4.9%);
+    --destructive: hsl(0 84.2% 60.2%);
+    --destructive-foreground: hsl(210 40% 98%);
+    --border: hsl(214.3 31.8% 91.4%);
+    --input: hsl(214.3 31.8% 91.4%);
+    --ring: hsl(221.2 83.2% 53.3%);
+    --chart-1: hsl(12 76% 61%);
+    --chart-2: hsl(173 58% 39%);
+    --chart-3: hsl(197 37% 24%);
+    --chart-4: hsl(43 74% 66%);
+    --chart-5: hsl(27 87% 67%);
+    --sidebar-background: hsl(210 40% 98%);
+    --sidebar-foreground: hsl(222.2 84% 4.9%);
+    --sidebar-primary: hsl(221.2 83.2% 53.3%);
+    --sidebar-primary-foreground: hsl(210 40% 98%);
+    --sidebar-accent: hsl(210 40% 96%);
+    --sidebar-accent-foreground: hsl(222.2 84% 4.9%);
+    --sidebar-border: hsl(214.3 31.8% 91.4%);
+    --sidebar-ring: hsl(221.2 83.2% 53.3%);
+    --radius: 0.5rem;
+}
+
+.dark {
+    --background: hsl(222.2 84% 4.9%);
+    --foreground: hsl(210 40% 98%);
+    --card: hsl(222.2 84% 4.9%);
+    --card-foreground: hsl(210 40% 98%);
+    --popover: hsl(222.2 84% 4.9%);
+    --popover-foreground: hsl(210 40% 98%);
+    --primary: hsl(217.2 91.2% 59.8%);
+    --primary-foreground: hsl(222.2 84% 4.9%);
+    --secondary: hsl(217.2 32.6% 17.5%);
+    --secondary-foreground: hsl(210 40% 98%);
+    --muted: hsl(217.2 32.6% 17.5%);
+    --muted-foreground: hsl(215 20.2% 65.1%);
+    --accent: hsl(217.2 32.6% 17.5%);
+    --accent-foreground: hsl(210 40% 98%);
+    --destructive: hsl(0 62.8% 30.6%);
+    --destructive-foreground: hsl(210 40% 98%);
+    --border: hsl(217.2 32.6% 17.5%);
+    --input: hsl(217.2 32.6% 17.5%);
+    --ring: hsl(224.3 76.3% 94.1%);
+    --chart-1: hsl(220 70% 50%);
+    --chart-2: hsl(160 60% 45%);
+    --chart-3: hsl(30 80% 55%);
+    --chart-4: hsl(280 65% 60%);
+    --chart-5: hsl(340 75% 55%);
+    --sidebar-background: hsl(217.2 32.6% 17.5%);
+    --sidebar-foreground: hsl(210 40% 98%);
+    --sidebar-primary: hsl(217.2 91.2% 59.8%);
+    --sidebar-primary-foreground: hsl(222.2 84% 4.9%);
+    --sidebar-accent: hsl(217.2 32.6% 17.5%);
+    --sidebar-accent-foreground: hsl(210 40% 98%);
+    --sidebar-border: hsl(217.2 32.6% 17.5%);
+    --sidebar-ring: hsl(224.3 76.3% 94.1%);
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+    
+    /* Sidebar Colors */
+    --sidebar-background: 222.2 84% 4.9%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 221.2 83.2% 53.3%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 217.2 32.6% 17.5%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217.2 32.6% 17.5%;
+    --sidebar-ring: 221.2 83.2% 53.3%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+    
+    /* Sidebar Colors - Dark */
+    --sidebar-background: 222.2 84% 4.9%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 217.2 91.2% 59.8%;
+    --sidebar-primary-foreground: 222.2 84% 4.9%;
+    --sidebar-accent: 217.2 32.6% 17.5%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217.2 32.6% 17.5%;
+    --sidebar-ring: 224.3 76.3% 94.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Element Plus Enhanced Customization */
+.el-button--primary {
+  --el-button-bg-color: var(--primary);
+  --el-button-border-color: var(--primary);
+  --el-button-hover-bg-color: hsl(221.2 83.2% 45%);
+  --el-button-hover-border-color: hsl(221.2 83.2% 45%);
+  --el-button-active-bg-color: hsl(221.2 83.2% 40%);
+  --el-button-active-border-color: hsl(221.2 83.2% 40%);
+  height: 48px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.el-button--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.el-button--primary:active {
+  transform: translateY(0);
+}
+
+/* Enhanced Input Styling */
+.el-input__wrapper {
+  --el-input-bg-color: var(--background);
+  --el-input-border-color: var(--border);
+  --el-input-hover-border-color: var(--primary);
+  --el-input-focus-border-color: var(--primary);
+  height: 48px !important;
+  border-radius: 8px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid var(--border) !important;
+}
+
+.el-input__wrapper:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+  border-color: var(--primary) !important;
+}
+
+.el-input__wrapper.is-focus {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2) !important;
+  border-color: var(--primary) !important;
+}
+
+/* Enhanced Textarea Styling */
+.el-textarea__inner {
+  border-radius: 8px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid var(--border) !important;
+  min-height: 120px !important;
+  padding: 12px 16px !important;
+}
+
+.el-textarea__inner:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+  border-color: var(--primary) !important;
+}
+
+.el-textarea__inner:focus {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2) !important;
+  border-color: var(--primary) !important;
+}
+
+/* Enhanced Select Styling */
+.el-select .el-input__wrapper {
+  height: 48px !important;
+  border-radius: 8px !important;
+}
+
+/* Enhanced Date Picker Styling */
+.el-date-editor.el-input .el-input__wrapper {
+  height: 48px !important;
+  border-radius: 8px !important;
+}
+
+.el-date-editor.el-input {
+  width: 100% !important;
+}
+
+/* Enhanced Card Styling */
+.el-card {
+  --el-card-bg-color: var(--card);
+  --el-card-border-color: var(--border);
+  border-radius: 16px !important;
+  border: 1px solid var(--border) !important;
+  transition: all 0.3s ease !important;
+  overflow: hidden !important;
+}
+
+.el-card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1) !important;
+}
+
+.el-card__header {
+  background: linear-gradient(135deg, var(--el-color-primary-light-9) 0%, var(--el-color-primary-light-8) 100%) !important;
+  border-bottom: 1px solid var(--border) !important;
+  padding: 1rem 1.5rem !important;
+}
+
+/* Enhanced Form Item Styling */
+.el-form-item__label {
+  font-weight: 600 !important;
+  color: var(--el-text-color-primary) !important;
+  margin-bottom: 0.5rem !important;
+  font-size: 0.875rem !important;
+  line-height: 1.4 !important;
+}
+
+.el-form-item {
+  margin-bottom: 1.5rem !important;
+}
+
+/* Enhanced Menu Styling */
+.el-menu {
+  --el-menu-bg-color: var(--sidebar-background);
+  --el-menu-text-color: var(--sidebar-foreground);
+  --el-menu-hover-bg-color: var(--sidebar-accent);
+  --el-menu-active-color: var(--sidebar-primary);
+  border-radius: 8px !important;
+}
+
+.el-menu-item.is-active {
+  background-color: var(--sidebar-primary) !important;
+  color: var(--sidebar-primary-foreground) !important;
+  border-radius: 8px !important;
+}
+
+.el-menu-item:hover {
+  background-color: var(--sidebar-accent) !important;
+  border-radius: 8px !important;
+}
+
+/* Enhanced Dropdown Styling */
+.el-dropdown-menu {
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid var(--border) !important;
+}
+
+/* Enhanced Rate Component */
+.el-rate {
+  --el-rate-font-size: 20px !important;
+}
+
+.el-rate__item {
+  margin-right: 8px !important;
+}
+
+/* Enhanced Alert Styling */
+.el-alert {
+  border-radius: 8px !important;
+  border: 1px solid var(--border) !important;
+}
+
+/* Enhanced Divider Styling */
+.el-divider {
+  margin: 16px 0 !important;
+}
+
+/* Enhanced Checkbox Styling */
+.el-checkbox__input.is-checked .el-checkbox__inner {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+/* Enhanced Radio Styling */
+.el-radio__input.is-checked .el-radio__inner {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+/* Enhanced Switch Styling */
+.el-switch.is-checked .el-switch__core {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+/* Enhanced Progress Styling */
+.el-progress-bar__outer {
+  border-radius: 4px !important;
+}
+
+.el-progress-bar__inner {
+  border-radius: 4px !important;
+}
+
+/* Enhanced Tag Styling */
+.el-tag {
+  border-radius: 6px !important;
+  font-weight: 500 !important;
+}
+
+/* Enhanced Badge Styling */
+.el-badge__content {
+  border-radius: 10px !important;
+}
+
+/* Enhanced Tooltip Styling */
+.el-tooltip__popper {
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Enhanced Message Styling */
+.el-message {
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Enhanced Notification Styling */
+.el-notification {
+  border-radius: 12px !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Enhanced Dialog Styling */
+.el-dialog {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+}
+
+.el-dialog__header {
+  background: linear-gradient(135deg, var(--el-color-primary-light-9) 0%, var(--el-color-primary-light-8) 100%) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+/* Enhanced Drawer Styling */
+.el-drawer {
+  border-radius: 16px 0 0 16px !important;
+}
+
+/* Enhanced Table Styling */
+.el-table {
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+.el-table th {
+  background-color: var(--el-fill-color-light) !important;
+  font-weight: 600 !important;
+}
+
+/* Enhanced Pagination Styling */
+.el-pagination {
+  justify-content: center !important;
+  margin-top: 2rem !important;
+}
+
+.el-pagination .el-pager li {
+  border-radius: 6px !important;
+  margin: 0 2px !important;
+}
+
+/* Enhanced Breadcrumb Styling */
+.el-breadcrumb {
+  font-size: 0.875rem !important;
+}
+
+.el-breadcrumb__item:last-child .el-breadcrumb__inner {
+  color: var(--el-text-color-primary) !important;
+  font-weight: 600 !important;
+}
+
+/* Enhanced Steps Styling */
+.el-steps .el-step__title {
+  font-weight: 600 !important;
+}
+
+.el-step.is-process .el-step__title {
+  color: var(--primary) !important;
+}
+
+/* Enhanced Tabs Styling */
+.el-tabs__item {
+  font-weight: 500 !important;
+  padding: 0 20px !important;
+}
+
+.el-tabs__item.is-active {
+  color: var(--primary) !important;
+}
+
+.el-tabs__active-bar {
+  background-color: var(--primary) !important;
+}
+
+/* Enhanced Collapse Styling */
+.el-collapse-item__header {
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+}
+
+.el-collapse-item__content {
+  border-radius: 0 0 8px 8px !important;
+}
+
+/* Enhanced Timeline Styling */
+.el-timeline-item__node {
+  background-color: var(--primary) !important;
+}
+
+.el-timeline-item__timestamp {
+  color: var(--el-text-color-regular) !important;
+}
+
+/* Enhanced Transfer Styling */
+.el-transfer {
+  border-radius: 8px !important;
+}
+
+.el-transfer-panel {
+  border-radius: 8px !important;
+}
+
+/* Enhanced Tree Styling */
+.el-tree-node__content {
+  border-radius: 4px !important;
+}
+
+.el-tree-node__content:hover {
+  background-color: var(--el-fill-color-light) !important;
+}
+
+/* Enhanced Cascader Styling */
+.el-cascader {
+  width: 100% !important;
+}
+
+.el-cascader .el-input__wrapper {
+  height: 48px !important;
+  border-radius: 8px !important;
+}
+
+/* Enhanced Time Picker Styling */
+.el-time-picker {
+  width: 100% !important;
+}
+
+.el-time-picker .el-input__wrapper {
+  height: 48px !important;
+  border-radius: 8px !important;
+}
+
+/* Enhanced Color Picker Styling */
+.el-color-picker {
+  border-radius: 8px !important;
+}
+
+/* Enhanced Slider Styling */
+.el-slider__runway {
+  border-radius: 4px !important;
+}
+
+.el-slider__bar {
+  border-radius: 4px !important;
+}
+
+.el-slider__button {
+  border-radius: 50% !important;
+}
+
+/* Enhanced Upload Styling */
+.el-upload {
+  border-radius: 8px !important;
+}
+
+.el-upload-dragger {
+  border-radius: 8px !important;
+  border: 2px dashed var(--border) !important;
+}
+
+.el-upload-dragger:hover {
+  border-color: var(--primary) !important;
+}
+
+/* Enhanced Calendar Styling */
+.el-calendar {
+  border-radius: 8px !important;
+}
+
+.el-calendar__header {
+  background-color: var(--el-fill-color-light) !important;
+  border-radius: 8px 8px 0 0 !important;
+}
+
+/* Enhanced Carousel Styling */
+.el-carousel__item {
+  border-radius: 8px !important;
+}
+
+/* Enhanced Image Styling */
+.el-image {
+  border-radius: 8px !important;
+}
+
+/* Enhanced Skeleton Styling */
+.el-skeleton__item {
+  border-radius: 4px !important;
+}
+
+/* Enhanced Loading Styling */
+.el-loading-mask {
+  border-radius: 8px !important;
+}
+
+/* Enhanced Backtop Styling */
+.el-backtop {
+  border-radius: 50% !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Enhanced Affix Styling */
+.el-affix {
+  border-radius: 8px !important;
+}
+
+/* Enhanced Anchor Styling */
+.el-anchor__link {
+  border-radius: 4px !important;
+}
+
+.el-anchor__link:hover {
+  background-color: var(--el-fill-color-light) !important;
+}
+
+/* Enhanced Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--el-fill-color-light);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--el-border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--el-border-color-dark);
+}
+
+/* Enhanced Focus States */
+.el-input__wrapper:focus-within,
+.el-textarea__inner:focus,
+.el-select .el-input__wrapper:focus-within {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2) !important;
+}
+
+/* Enhanced Hover States */
+.el-button:hover,
+.el-input__wrapper:hover,
+.el-textarea__inner:hover,
+.el-select .el-input__wrapper:hover {
+  transform: translateY(-1px);
+  transition: all 0.3s ease;
+}
+
+/* Enhanced Active States */
+.el-button:active,
+.el-input__wrapper:active,
+.el-textarea__inner:active,
+.el-select .el-input__wrapper:active {
+  transform: translateY(0);
+}
+
+/* Responsive Enhancements */
+@media (max-width: 768px) {
+  .el-button--primary {
+    height: 44px;
+    font-size: 0.875rem;
+  }
+  
+  .el-input__wrapper {
+    height: 44px !important;
+  }
+  
+  .el-textarea__inner {
+    min-height: 100px !important;
+  }
+  
+  .el-card {
+    border-radius: 12px !important;
+  }
+  
+  .el-card__header {
+    padding: 0.75rem 1rem !important;
+  }
+}
+
+/* Dark Mode Enhancements */
+@media (prefers-color-scheme: dark) {
+  .el-input__wrapper {
+    background-color: var(--el-bg-color) !important;
+    border-color: var(--el-border-color) !important;
+  }
+  
+  .el-textarea__inner {
+    background-color: var(--el-bg-color) !important;
+    border-color: var(--el-border-color) !important;
+  }
+  
+  .el-card {
+    background-color: var(--el-bg-color) !important;
+    border-color: var(--el-border-color) !important;
+  }
+}
+
+/* Utility Classes */
+.gradient-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, hsl(221.2 83.2% 65%) 100%);
+}
+
+.gradient-secondary {
+  background: linear-gradient(135deg, var(--secondary) 0%, hsl(210 40% 90%) 100%);
+}
+
+.gradient-accent {
+  background: linear-gradient(135deg, var(--accent) 0%, hsl(210 40% 90%) 100%);
+}
+
+.form-section {
+  margin-bottom: 2rem;
+}
+
+.form-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.form-input {
+  width: 100%;
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 0.5rem;
+}
+
+.sidebar-modern {
+  background: var(--sidebar-background);
+  color: var(--sidebar-foreground);
+  border-right: 1px solid var(--sidebar-border);
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin: 0.25rem 0.5rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  color: var(--sidebar-foreground);
+}
+
+.sidebar-item:hover {
+  background: var(--sidebar-accent);
+  color: var(--sidebar-accent-foreground);
+}
+
+.sidebar-item.active {
+  background: var(--sidebar-primary);
+  color: var(--sidebar-primary-foreground);
+}
+
+.card-modern {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.card-modern:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.card-header-modern {
+  background: linear-gradient(135deg, var(--primary) 0%, hsl(221.2 83.2% 65%) 100%);
+  color: white;
+  padding: 1.5rem;
+}
+
+.card-content-modern {
+  padding: 1.5rem;
+}
