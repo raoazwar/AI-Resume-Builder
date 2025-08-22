@@ -229,6 +229,6 @@ If you have any questions or need help:
 
 ---
 
-**Made with ❤️ by [Your Name]**
+**Made with ❤️ by Rao Azwar**
 
 *Star this repository if it helped you! ⭐*
