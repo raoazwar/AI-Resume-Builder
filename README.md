@@ -225,7 +225,7 @@ If you have any questions or need help:
 
 - Create an [issue](https://github.com/raoazwar/AI-Resume-Builder/issues)
 - Check the [documentation](https://github.com/raoazwar/AI-Resume-Builder/wiki)
-- Contact: [your-email@example.com]
+- Contact: [r.azwar42@gmail.com]
 
 ---
 
